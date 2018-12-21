@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float slowingSpeed = 0.175f;         // The speed the player moves as it reaches close to it's destination.
     public float turnSpeedThreshold = 0.5f;     // The speed beyond which the player can move and turn normally.
     public float inputHoldDelay = 0.5f;         // How long after reaching an interactable before input is allowed again.
-    
+
 
     private Interactable currentInteractable;   // The interactable that is currently being headed towards.
     private Vector3 destinationPosition;        // The position that is currently being headed towards, this is the interactionLocation of the currentInteractable if it is not null.
@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Cache the speed that nav mesh agent wants to move at.
         float speed = agent.desiredVelocity.magnitude;
-        
+
         // If the nav mesh agent is very close to it's destination, call the Stopping function.
         if (agent.remainingDistance <= agent.stoppingDistance * stopDistanceProportion)
             Stopping (out speed);
@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         // Otherwise, if the nav mesh agent wants to move fast enough, call the Moving function.
         else if (speed > turnSpeedThreshold)
             Moving ();
-        
+
         // Set the animator's Speed parameter based on the (possibly modified) speed that the nav mesh agent wants to move at.
         animator.SetFloat(hashSpeedPara, speed, speedDampTime, Time.deltaTime);
     }
@@ -158,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
         // If the handle input flag is set to false then do nothing.
         if(!handleInput)
             return;
-        
+
         // The player is no longer headed for an interactable so set it to null.
         currentInteractable = null;
 
